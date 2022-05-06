@@ -121,7 +121,8 @@ class ViewController: UIViewController {
   func processObservations(for request: VNRequest, error: Error?) {
     DispatchQueue.main.async {
       if let results = request.results as? [VNRecognizedObjectObservation] {
-        self.show(predictions: results)
+          let personResults = results.filter({ $0.labels[0].identifier == "person" })
+        self.show(predictions: personResults)
       } else {
         self.show(predictions: [])
       }
@@ -157,6 +158,7 @@ class ViewController: UIViewController {
         // The labels array is a list of VNClassificationObservation objects,
         // with the highest scoring class first in the list.
         let bestClass = prediction.labels[0].identifier
+        print("detected: \(bestClass)")
         let confidence = prediction.labels[0].confidence
 
         // Show the bounding box.

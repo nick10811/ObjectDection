@@ -83,10 +83,11 @@ public class VideoCapture: NSObject {
 
 extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
   public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+      
     delegate?.videoCapture(self, didCaptureVideoFrame: sampleBuffer)
   }
 
   public func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-    //print("dropped frame")
+//    print("dropped frame")
   }
 }

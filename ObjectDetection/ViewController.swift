@@ -130,6 +130,9 @@ class ViewController: UIViewController {
   }
 
   func show(predictions: [VNRecognizedObjectObservation]) {
+      if predictions.count > 0 {
+          videoCapture.record()
+      }
     for i in 0..<boundingBoxViews.count {
       if i < predictions.count {
         let prediction = predictions[i]

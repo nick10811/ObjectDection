@@ -28,6 +28,10 @@ public class VideoCapture: NSObject {
     ])
     
     var isRecording = false
+    var sessionAtSourceTime: CMTime?
+    var isWritable: Bool {
+        return isRecording && videoWritter != nil && videoWritter.status == .writing
+    }
     
     var lastTimestamp = CMTime()
     
@@ -98,6 +102,7 @@ public class VideoCapture: NSObject {
     public func record() {
         guard !isRecording else { return }
         isRecording = true
+        sessionAtSourceTime = nil
         setUpWritter()
         
         switch videoWritter.status {
@@ -113,9 +118,10 @@ public class VideoCapture: NSObject {
         guard isRecording else { return }
         isRecording = false
         videoWritterInput.markAsFinished()
-        videoWritter.finishWriting {
-            // TODO: stop writting
+        videoWritter.finishWriting { [weak self] in
+            self?.sessionAtSourceTime = nil
         }
+        print("finished writing")
     }
     
     func setUpWritter() {
@@ -129,8 +135,6 @@ public class VideoCapture: NSObject {
             }
 
             videoWritter.startWriting()
-            // TODO: start writing
-//            videoWritter.startSession(atSourceTime: <#T##CMTime#>)
         } catch let error {
             debugPrint(error.localizedDescription)
         }
@@ -152,8 +156,17 @@ public class VideoCapture: NSObject {
 
 extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if isRecording {
-            print("writting")
+        if isWritable, sessionAtSourceTime == nil {
+            print("start writting")
+            sessionAtSourceTime = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer)
+            videoWritter.startSession(atSourceTime: sessionAtSourceTime!)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
+                self?.stopRecord()
+            }
+        }
+        
+        if isWritable, videoWritterInput.isReadyForMoreMediaData {
+            videoWritterInput.append(sampleBuffer)
         }
         
         print("buffer")

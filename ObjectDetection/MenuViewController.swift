@@ -11,10 +11,6 @@ import AVKit
 
 class MenuViewController: UIViewController {
     
-    lazy var latestRecordPath: URL = {
-        FileManager.default.temporaryDirectory.appendingPathComponent("record").appendingPathExtension(AVFileType.mov.rawValue)
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
@@ -52,8 +48,10 @@ class MenuViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    // MARK: - test purpose
     @objc func playRecord(_ sender: UIButton) {
-        let player = AVPlayer(url: latestRecordPath)
+        let filePath = FileManager.default.temporaryDirectory.appendingPathComponent(Utility.fileName)
+        let player = AVPlayer(url: filePath)
         let playerController = AVPlayerViewController()
         playerController.player = player
         self.present(playerController, animated: true)

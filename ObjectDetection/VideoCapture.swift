@@ -126,7 +126,7 @@ public class VideoCapture: NSObject {
     
     func setUpWritter() {
         do {
-            let filePath = localFilePath("record", fileType: .mov)
+            let filePath = localFilePath(Utility.fileName)
             videoWritter = try AVAssetWriter(url: filePath, fileType: .mov)
             
             videoWritterInput.expectsMediaDataInRealTime = true
@@ -140,9 +140,9 @@ public class VideoCapture: NSObject {
         }
     }
     
-    func localFilePath(_ name: String, fileType: AVFileType) -> URL {
+    func localFilePath(_ name: String) -> URL {
         let fileManager = FileManager.default
-        let url = fileManager.temporaryDirectory.appendingPathComponent(name).appendingPathExtension(fileType.rawValue)
+        let url = fileManager.temporaryDirectory.appendingPathComponent(name)
         if fileManager.fileExists(atPath: url.path) {
             do {
                 try fileManager.removeItem(at: url)

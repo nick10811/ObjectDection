@@ -101,11 +101,11 @@ public class VideoCapture: NSObject {
         setUpWritter()
         
         switch videoWritter.status {
-        case .writing  : debugPrint("writter status: writing")
-        case .completed: debugPrint("writter status: completed")
-        case .failed   : debugPrint("writter status: failed")
-        case .cancelled: debugPrint("writter status: canceled")
-        default        : debugPrint("writter status: unknown")
+        case .writing  : print("writter status: writing")
+        case .completed: print("writter status: completed")
+        case .failed   : print("writter status: failed")
+        case .cancelled: print("writter status: canceled")
+        default        : print("writter status: unknown")
         }
     }
     
@@ -120,8 +120,8 @@ public class VideoCapture: NSObject {
     
     func setUpWritter() {
         do {
-            let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("record.mov")
-            videoWritter = try AVAssetWriter(url: fileURL, fileType: .mov)
+            let filePath = localFilePath("record", fileType: .mov)
+            videoWritter = try AVAssetWriter(url: filePath, fileType: .mov)
             
             videoWritterInput.expectsMediaDataInRealTime = true
             if videoWritter.canAdd(videoWritterInput) {
@@ -134,6 +134,19 @@ public class VideoCapture: NSObject {
         } catch let error {
             debugPrint(error.localizedDescription)
         }
+    }
+    
+    func localFilePath(_ name: String, fileType: AVFileType) -> URL {
+        let fileManager = FileManager.default
+        let url = fileManager.temporaryDirectory.appendingPathComponent(name).appendingPathExtension(fileType.rawValue)
+        if fileManager.fileExists(atPath: url.path) {
+            do {
+                try fileManager.removeItem(at: url)
+            } catch let error {
+                debugPrint("File removing failed. \(error)")
+            }
+        }
+        return url
     }
 }
 

@@ -10,6 +10,10 @@ import UIKit
 import AVKit
 
 class MenuViewController: UIViewController {
+    
+    lazy var latestRecordPath: URL = {
+        FileManager.default.temporaryDirectory.appendingPathComponent("record").appendingPathExtension(AVFileType.mov.rawValue)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +24,8 @@ class MenuViewController: UIViewController {
         // make buttons
         let detectButton = makeButton("Detect")
         detectButton.addTarget(self, action: #selector(detectPerson(_:)), for: .touchUpInside)
-        let playButton = makeButton("Play Record Video")
+        let playButton = makeButton("Play Latest Record Video")
+        playButton.addTarget(self, action: #selector(playRecord(_:)), for: .touchUpInside)
         
         @UseAutoLayout var stackView = UIStackView(arrangedSubviews: [detectButton, playButton])
         stackView.distribution = .fillEqually
@@ -47,8 +52,11 @@ class MenuViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func playRecord() {
-        
+    @objc func playRecord(_ sender: UIButton) {
+        let player = AVPlayer(url: latestRecordPath)
+        let playerController = AVPlayerViewController()
+        playerController.player = player
+        self.present(playerController, animated: true)
     }
     
 }

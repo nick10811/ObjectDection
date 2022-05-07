@@ -3,7 +3,7 @@ import CoreML
 import UIKit
 import Vision
 
-class ViewController: UIViewController {
+class DetectionViewController: UIViewController {
 
   @IBOutlet var videoPreview: UIView!
 
@@ -175,7 +175,7 @@ class ViewController: UIViewController {
   }
 }
 
-extension ViewController: VideoCaptureDelegate {
+extension DetectionViewController: VideoCaptureDelegate {
   func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame sampleBuffer: CMSampleBuffer) {
     predict(sampleBuffer: sampleBuffer)
   }

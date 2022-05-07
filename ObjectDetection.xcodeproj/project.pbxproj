@@ -8,19 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		7BCB411B21C3096100BFC4D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB411A21C3096100BFC4D0 /* AppDelegate.swift */; };
-		7BCB411D21C3096100BFC4D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB411C21C3096100BFC4D0 /* ViewController.swift */; };
+		7BCB411D21C3096100BFC4D0 /* DetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB411C21C3096100BFC4D0 /* DetectionViewController.swift */; };
 		7BCB412021C3096100BFC4D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BCB411E21C3096100BFC4D0 /* Main.storyboard */; };
 		7BCB412221C3096200BFC4D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BCB412121C3096200BFC4D0 /* Assets.xcassets */; };
 		7BCB412521C3096200BFC4D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BCB412321C3096200BFC4D0 /* LaunchScreen.storyboard */; };
 		7BCB413221C309B900BFC4D0 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB412E21C309B900BFC4D0 /* BoundingBoxView.swift */; };
 		7BCB413321C309B900BFC4D0 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB412F21C309B900BFC4D0 /* VideoCapture.swift */; };
 		7BCB413921C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB413821C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel */; };
+		940F8BC42826236D006336FB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BC32826236D006336FB /* MenuViewController.swift */; };
+		940F8BC828262735006336FB /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BC728262735006336FB /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7BCB411721C3096100BFC4D0 /* ObjectDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BCB411A21C3096100BFC4D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7BCB411C21C3096100BFC4D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7BCB411C21C3096100BFC4D0 /* DetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionViewController.swift; sourceTree = "<group>"; };
 		7BCB411F21C3096100BFC4D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7BCB412121C3096200BFC4D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BCB412421C3096200BFC4D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -28,6 +30,8 @@
 		7BCB412E21C309B900BFC4D0 /* BoundingBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
 		7BCB412F21C309B900BFC4D0 /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
 		7BCB413821C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2_SSDLite.mlmodel; sourceTree = "<group>"; };
+		940F8BC32826236D006336FB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		940F8BC728262735006336FB /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +67,9 @@
 				7BCB411A21C3096100BFC4D0 /* AppDelegate.swift */,
 				7BCB412E21C309B900BFC4D0 /* BoundingBoxView.swift */,
 				7BCB412F21C309B900BFC4D0 /* VideoCapture.swift */,
-				7BCB411C21C3096100BFC4D0 /* ViewController.swift */,
+				7BCB411C21C3096100BFC4D0 /* DetectionViewController.swift */,
+				940F8BC32826236D006336FB /* MenuViewController.swift */,
+				940F8BC728262735006336FB /* Utility.swift */,
 				7BCB413821C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel */,
 				7BCB412121C3096200BFC4D0 /* Assets.xcassets */,
 				7BCB412621C3096200BFC4D0 /* Info.plist */,
@@ -145,7 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BCB411D21C3096100BFC4D0 /* ViewController.swift in Sources */,
+				940F8BC828262735006336FB /* Utility.swift in Sources */,
+				7BCB411D21C3096100BFC4D0 /* DetectionViewController.swift in Sources */,
+				940F8BC42826236D006336FB /* MenuViewController.swift in Sources */,
 				7BCB413221C309B900BFC4D0 /* BoundingBoxView.swift in Sources */,
 				7BCB413921C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel in Sources */,
 				7BCB411B21C3096100BFC4D0 /* AppDelegate.swift in Sources */,

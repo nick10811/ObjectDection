@@ -1,6 +1,7 @@
 import AVFoundation
 import CoreVideo
 import UIKit
+import Photos
 
 public protocol VideoCaptureDelegate: class {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame: CMSampleBuffer)
@@ -28,6 +29,7 @@ public class VideoCapture: NSObject {
     ])
     
     let duration: CGFloat = 10 // 10s
+    var recordsPath: URL?
     var isRecording = false
     var sessionAtSourceTime: CMTime?
     var isWritable: Bool {
@@ -121,14 +123,15 @@ public class VideoCapture: NSObject {
         videoWritterInput.markAsFinished()
         videoWritter.finishWriting { [weak self] in
             self?.sessionAtSourceTime = nil
+            self?.grantPhotoLibrary()
         }
         print("finished writing")
     }
     
     func setUpWritter() {
         do {
-            let filePath = localFilePath(Utility.fileName)
-            videoWritter = try AVAssetWriter(url: filePath, fileType: .mov)
+            recordsPath = localFilePath(Utility.fileName)
+            videoWritter = try AVAssetWriter(url: recordsPath!, fileType: .mov)
             
 //            videoWritterInput.expectsMediaDataInRealTime = true
             if videoWritter.canAdd(videoWritterInput) {
@@ -152,6 +155,34 @@ public class VideoCapture: NSObject {
             }
         }
         return url
+    }
+    
+    private func grantPhotoLibrary() {
+        // permission
+        let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+        
+        if status == .notDetermined || status == .denied {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] auth in
+                if auth == .authorized {
+                    self?.saveInPhotoLibrary()
+                } else {
+                    print("user denied access the photo library.")
+                }
+            }
+        } else {
+            saveInPhotoLibrary()
+        }
+    }
+    
+    private func saveInPhotoLibrary() {
+        guard let recordsPath = recordsPath else {
+            return
+        }
+        
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: recordsPath)
+        }, completionHandler: nil)
+
     }
 }
 

@@ -24,3 +24,10 @@ struct UseAutoLayout<T: UIView> {
         wrappedValue.translatesAutoresizingMaskIntoConstraints = false
     }
 }
+
+public class Utility {
+    static func getViewController(_ storyboardName: String, withIdentifier: String) -> UIViewController {
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: withIdentifier)
+    }
+}

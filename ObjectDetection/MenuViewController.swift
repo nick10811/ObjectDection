@@ -19,6 +19,7 @@ class MenuViewController: UIViewController {
     func setUp() {
         // make buttons
         let detectButton = makeButton("Detect")
+        detectButton.addTarget(self, action: #selector(detectPerson(_:)), for: .touchUpInside)
         let playButton = makeButton("Play Record Video")
         
         @UseAutoLayout var stackView = UIStackView(arrangedSubviews: [detectButton, playButton])
@@ -41,12 +42,13 @@ class MenuViewController: UIViewController {
         return button
     }
     
+    @objc func detectPerson(_ sender: UIButton) {
+        guard let vc = Utility.getViewController("Main", withIdentifier: "DetectionViewController") as? DetectionViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc func playRecord() {
         
     }
     
-    @objc func detectPerson() {
-        
-    }
-   
 }

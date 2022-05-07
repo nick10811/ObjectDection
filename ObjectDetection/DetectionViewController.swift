@@ -4,6 +4,7 @@ import UIKit
 import Vision
 
 class DetectionViewController: UIViewController {
+    static let identifier = "DetectionViewController"
 
   @IBOutlet var videoPreview: UIView!
 

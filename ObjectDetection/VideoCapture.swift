@@ -27,6 +27,7 @@ public class VideoCapture: NSObject {
         ],
     ])
     
+    let duration: CGFloat = 10 // 10s
     var isRecording = false
     var sessionAtSourceTime: CMTime?
     var isWritable: Bool {
@@ -129,7 +130,7 @@ public class VideoCapture: NSObject {
             let filePath = localFilePath(Utility.fileName)
             videoWritter = try AVAssetWriter(url: filePath, fileType: .mov)
             
-            videoWritterInput.expectsMediaDataInRealTime = true
+//            videoWritterInput.expectsMediaDataInRealTime = true
             if videoWritter.canAdd(videoWritterInput) {
                 videoWritter.add(videoWritterInput)
             }
@@ -160,7 +161,7 @@ extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
             print("start writting")
             sessionAtSourceTime = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer)
             videoWritter.startSession(atSourceTime: sessionAtSourceTime!)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
                 self?.stopRecord()
             }
         }

@@ -26,7 +26,7 @@ struct UseAutoLayout<T: UIView> {
 }
 
 public class Utility {
-    static let fileName = "record.mov"
+    static let fileName = "record.mp4"
     
     static func getViewController(_ storyboardName: String, withIdentifier: String) -> UIViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)

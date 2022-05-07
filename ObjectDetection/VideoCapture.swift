@@ -123,7 +123,10 @@ public class VideoCapture: NSObject {
         videoWritterInput.markAsFinished()
         videoWritter.finishWriting { [weak self] in
             self?.sessionAtSourceTime = nil
-            self?.grantPhotoLibrary()
+            if let url = self?.recordsPath {
+                let photo = PhotoLibraryHelper()
+                photo.save(url)
+            }
         }
         print("finished writing")
     }
@@ -155,34 +158,6 @@ public class VideoCapture: NSObject {
             }
         }
         return url
-    }
-    
-    private func grantPhotoLibrary() {
-        // permission
-        let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
-        
-        if status == .notDetermined || status == .denied {
-            PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] auth in
-                if auth == .authorized {
-                    self?.saveInPhotoLibrary()
-                } else {
-                    print("user denied access the photo library.")
-                }
-            }
-        } else {
-            saveInPhotoLibrary()
-        }
-    }
-    
-    private func saveInPhotoLibrary() {
-        guard let recordsPath = recordsPath else {
-            return
-        }
-        
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: recordsPath)
-        }, completionHandler: nil)
-
     }
 }
 

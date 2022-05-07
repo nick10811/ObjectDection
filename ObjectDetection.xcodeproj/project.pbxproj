@@ -17,6 +17,7 @@
 		7BCB413921C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB413821C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel */; };
 		940F8BC42826236D006336FB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BC32826236D006336FB /* MenuViewController.swift */; };
 		940F8BC828262735006336FB /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BC728262735006336FB /* Utility.swift */; };
+		940F8BCC2826A9E5006336FB /* PhotoLibraryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BCB2826A9E5006336FB /* PhotoLibraryHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		7BCB413821C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2_SSDLite.mlmodel; sourceTree = "<group>"; };
 		940F8BC32826236D006336FB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		940F8BC728262735006336FB /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		940F8BCB2826A9E5006336FB /* PhotoLibraryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				7BCB411A21C3096100BFC4D0 /* AppDelegate.swift */,
 				7BCB412E21C309B900BFC4D0 /* BoundingBoxView.swift */,
 				7BCB412F21C309B900BFC4D0 /* VideoCapture.swift */,
+				940F8BCB2826A9E5006336FB /* PhotoLibraryHelper.swift */,
 				7BCB411C21C3096100BFC4D0 /* DetectionViewController.swift */,
 				940F8BC32826236D006336FB /* MenuViewController.swift */,
 				940F8BC728262735006336FB /* Utility.swift */,
@@ -153,6 +156,7 @@
 			files = (
 				940F8BC828262735006336FB /* Utility.swift in Sources */,
 				7BCB411D21C3096100BFC4D0 /* DetectionViewController.swift in Sources */,
+				940F8BCC2826A9E5006336FB /* PhotoLibraryHelper.swift in Sources */,
 				940F8BC42826236D006336FB /* MenuViewController.swift in Sources */,
 				7BCB413221C309B900BFC4D0 /* BoundingBoxView.swift in Sources */,
 				7BCB413921C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel in Sources */,

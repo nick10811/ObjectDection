@@ -9,12 +9,15 @@
 import UIKit
 import AVKit
 import PhotosUI
+import Vision
 
 class MenuViewController: UIViewController {
+    let recorder = VideoRecorder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        recorder.delegate = self
     }
     
     func setUp() {
@@ -83,17 +86,29 @@ extension MenuViewController: PHPickerViewControllerDelegate {
         guard let provider = results.first?.itemProvider else { return }
         guard provider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) else { return }
         provider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] (url, error) in
-            // copy to the local
             if let url = url {
+                // copy to the local
                 let desitnation = Utility.getLocalFilePath(Utility.copiedFileName)
                 if Utility.copyFile(at: url, to: desitnation) {
-                    // TODO: convert URL to AVAssetReader
-                    // TOOD: pass data to another handler to detect person
+                    self?.recorder.read(desitnation)
+                    
+                    // make sure the video can be palyed
 //                    DispatchQueue.main.async {
 //                        self?.playVideo(desitnation)
 //                    }
                 }
             }
+        }
+    }
+}
+
+extension MenuViewController: VideoRecorderDelegate {
+    func videoRecorder(_ recorder: VideoRecorder, completion: (() -> ())?) {
+        DispatchQueue.main.async {
+            let alertVC = UIAlertController(title: "Alert", message: "The process is completed", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertVC.addAction(okAction)
+            self.present(alertVC, animated: true)
         }
     }
 }

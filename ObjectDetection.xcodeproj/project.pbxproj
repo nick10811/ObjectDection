@@ -20,6 +20,7 @@
 		940F8BCC2826A9E5006336FB /* PhotoLibraryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BCB2826A9E5006336FB /* PhotoLibraryHelper.swift */; };
 		940F8BCF2827A206006336FB /* Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BCE2827A206006336FB /* Detection.swift */; };
 		940F8BD12827A46E006336FB /* PersonDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BD02827A46E006336FB /* PersonDetection.swift */; };
+		940F8BD32827B533006336FB /* VideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BD22827B533006336FB /* VideoRecorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		940F8BCB2826A9E5006336FB /* PhotoLibraryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryHelper.swift; sourceTree = "<group>"; };
 		940F8BCE2827A206006336FB /* Detection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detection.swift; sourceTree = "<group>"; };
 		940F8BD02827A46E006336FB /* PersonDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetection.swift; sourceTree = "<group>"; };
+		940F8BD22827B533006336FB /* VideoRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				7BCB411C21C3096100BFC4D0 /* DetectionViewController.swift */,
 				940F8BC32826236D006336FB /* MenuViewController.swift */,
 				940F8BC728262735006336FB /* Utility.swift */,
+				940F8BD22827B533006336FB /* VideoRecorder.swift */,
 				7BCB413821C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel */,
 				7BCB412121C3096200BFC4D0 /* Assets.xcassets */,
 				7BCB412621C3096200BFC4D0 /* Info.plist */,
@@ -177,6 +180,7 @@
 				7BCB413921C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel in Sources */,
 				7BCB411B21C3096100BFC4D0 /* AppDelegate.swift in Sources */,
 				940F8BCF2827A206006336FB /* Detection.swift in Sources */,
+				940F8BD32827B533006336FB /* VideoRecorder.swift in Sources */,
 				7BCB413321C309B900BFC4D0 /* VideoCapture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

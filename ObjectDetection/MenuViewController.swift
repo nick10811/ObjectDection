@@ -62,11 +62,15 @@ class MenuViewController: UIViewController {
     
     // MARK: - test purpose
     @objc func playRecord(_ sender: UIButton) {
-        let filePath = FileManager.default.temporaryDirectory.appendingPathComponent(Utility.fileName)
-        let player = AVPlayer(url: filePath)
-        let playerController = AVPlayerViewController()
-        playerController.player = player
-        self.present(playerController, animated: true)
+        let filePath = FileManager.default.temporaryDirectory.appendingPathComponent(Utility.recordFileName)
+        playVideo(filePath)
+    }
+    
+    private func playVideo(_ url: URL) {
+        print("video's url: \(url.path)")
+        let vc = AVPlayerViewController()
+        vc.player = AVPlayer(url: url)
+        self.present(vc, animated: true)
     }
     
 }
@@ -75,5 +79,21 @@ class MenuViewController: UIViewController {
 extension MenuViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true, completion: nil)
+        
+        guard let provider = results.first?.itemProvider else { return }
+        guard provider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) else { return }
+        provider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] (url, error) in
+            // copy to the local
+            if let url = url {
+                let desitnation = Utility.getLocalFilePath(Utility.copiedFileName)
+                if Utility.copyFile(at: url, to: desitnation) {
+                    // TODO: convert URL to AVAssetReader
+                    // TOOD: pass data to another handler to detect person
+//                    DispatchQueue.main.async {
+//                        self?.playVideo(desitnation)
+//                    }
+                }
+            }
+        }
     }
 }

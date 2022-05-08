@@ -70,6 +70,11 @@ public class VideoRecorder {
                     sessionAtSourceTime = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer)
                     videoWritter.startSession(atSourceTime: sessionAtSourceTime!)
                     // FIXME: how many frames in 1 second?
+                    // TODO: draw box
+                    // bad solution:
+                    // 1. convert to UIImageView
+                    // 2. Add box view (UIView) in the top of UIImageView
+                    // 3. store it
                     DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
                         self?.stopRecord()
                     }

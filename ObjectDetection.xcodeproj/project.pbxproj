@@ -18,6 +18,8 @@
 		940F8BC42826236D006336FB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BC32826236D006336FB /* MenuViewController.swift */; };
 		940F8BC828262735006336FB /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BC728262735006336FB /* Utility.swift */; };
 		940F8BCC2826A9E5006336FB /* PhotoLibraryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BCB2826A9E5006336FB /* PhotoLibraryHelper.swift */; };
+		940F8BCF2827A206006336FB /* Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BCE2827A206006336FB /* Detection.swift */; };
+		940F8BD12827A46E006336FB /* PersonDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F8BD02827A46E006336FB /* PersonDetection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		940F8BC32826236D006336FB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		940F8BC728262735006336FB /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		940F8BCB2826A9E5006336FB /* PhotoLibraryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryHelper.swift; sourceTree = "<group>"; };
+		940F8BCE2827A206006336FB /* Detection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detection.swift; sourceTree = "<group>"; };
+		940F8BD02827A46E006336FB /* PersonDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 		7BCB411921C3096100BFC4D0 /* ObjectDetection */ = {
 			isa = PBXGroup;
 			children = (
+				940F8BCD2827A1F8006336FB /* Detection */,
 				7BCB411A21C3096100BFC4D0 /* AppDelegate.swift */,
 				7BCB412E21C309B900BFC4D0 /* BoundingBoxView.swift */,
 				7BCB412F21C309B900BFC4D0 /* VideoCapture.swift */,
@@ -80,6 +85,15 @@
 				7BCB411E21C3096100BFC4D0 /* Main.storyboard */,
 			);
 			path = ObjectDetection;
+			sourceTree = "<group>";
+		};
+		940F8BCD2827A1F8006336FB /* Detection */ = {
+			isa = PBXGroup;
+			children = (
+				940F8BCE2827A206006336FB /* Detection.swift */,
+				940F8BD02827A46E006336FB /* PersonDetection.swift */,
+			);
+			path = Detection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,9 +172,11 @@
 				7BCB411D21C3096100BFC4D0 /* DetectionViewController.swift in Sources */,
 				940F8BCC2826A9E5006336FB /* PhotoLibraryHelper.swift in Sources */,
 				940F8BC42826236D006336FB /* MenuViewController.swift in Sources */,
+				940F8BD12827A46E006336FB /* PersonDetection.swift in Sources */,
 				7BCB413221C309B900BFC4D0 /* BoundingBoxView.swift in Sources */,
 				7BCB413921C55F9B00BFC4D0 /* MobileNetV2_SSDLite.mlmodel in Sources */,
 				7BCB411B21C3096100BFC4D0 /* AppDelegate.swift in Sources */,
+				940F8BCF2827A206006336FB /* Detection.swift in Sources */,
 				7BCB413321C309B900BFC4D0 /* VideoCapture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

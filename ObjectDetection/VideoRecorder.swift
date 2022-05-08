@@ -52,7 +52,9 @@ public class VideoRecorder {
         print("track count: \(videoReader.asset.tracks.count)")
         guard let track = videoReader.asset.tracks(withMediaType: .video).first else { return }
         
-        let videoReaderOutput = AVAssetReaderTrackOutput(track: track, outputSettings: nil)
+        // ref: https://stackoverflow.com/a/25852689
+        let videoReaderOutput = AVAssetReaderTrackOutput(track: track, outputSettings: [String(kCVPixelBufferPixelFormatTypeKey) : Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)]
+        )
         
         if videoReader.canAdd(videoReaderOutput) {
             videoReader.add(videoReaderOutput)
@@ -62,12 +64,12 @@ public class VideoRecorder {
         while videoReader.status == .reading {
             print("reading")
             // retrive CMSampleBuffer and pass it into PersonDetection
-            // FIXME: how many frames in 1 second?
             if let sampleBuffer = videoReaderOutput.copyNextSampleBuffer() {
                 if isWritable, sessionAtSourceTime == nil {
                     print("start writting")
                     sessionAtSourceTime = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer)
                     videoWritter.startSession(atSourceTime: sessionAtSourceTime!)
+                    // FIXME: how many frames in 1 second?
                     DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
                         self?.stopRecord()
                     }
